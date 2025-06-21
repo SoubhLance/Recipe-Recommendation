@@ -1,0 +1,12 @@
+prefix=e:/Receipe_Recomendation_System/venv/Library
+exec_prefix=e:/Receipe_Recomendation_System/venv/Library
+libdir=e:/Receipe_Recomendation_System/venv/Library/lib
+includedir=e:/Receipe_Recomendation_System/venv/Library/include
+
+Name: libzmq
+Description: 0MQ c++ library
+Version: 4.3.5
+Libs: -L${libdir} -lzmq
+Libs.private: 
+Requires.private: 
+Cflags: -I${includedir} 

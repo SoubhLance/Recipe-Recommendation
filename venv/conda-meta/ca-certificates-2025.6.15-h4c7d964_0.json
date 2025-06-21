@@ -1,0 +1,51 @@
+{
+  "build": "h4c7d964_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "constrains": [],
+  "depends": [
+    "__win"
+  ],
+  "extracted_package_dir": "c:\\Users\\Soubh\\anaconda3\\pkgs\\ca-certificates-2025.6.15-h4c7d964_0",
+  "files": [
+    "Library/ssl/cacert.pem",
+    "Library/ssl/cert.pem"
+  ],
+  "fn": "ca-certificates-2025.6.15-h4c7d964_0.conda",
+  "license": "ISC",
+  "link": {
+    "source": "c:\\Users\\Soubh\\anaconda3\\pkgs\\ca-certificates-2025.6.15-h4c7d964_0",
+    "type": 1
+  },
+  "md5": "b01649832f7bc7ff94f8df8bd2ee6457",
+  "name": "ca-certificates",
+  "noarch": "generic",
+  "package_tarball_full_path": "c:\\Users\\Soubh\\anaconda3\\pkgs\\ca-certificates-2025.6.15-h4c7d964_0.conda",
+  "package_type": "noarch_generic",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "Library/ssl/cacert.pem",
+        "path_type": "hardlink",
+        "sha256": "b1cdd2d665758ef49d08f40ea13e1a826e5f0412e9e0940c921ed1021464cdc2",
+        "sha256_in_prefix": "b1cdd2d665758ef49d08f40ea13e1a826e5f0412e9e0940c921ed1021464cdc2",
+        "size_in_bytes": 281225
+      },
+      {
+        "_path": "Library/ssl/cert.pem",
+        "path_type": "hardlink",
+        "sha256": "b1cdd2d665758ef49d08f40ea13e1a826e5f0412e9e0940c921ed1021464cdc2",
+        "sha256_in_prefix": "b1cdd2d665758ef49d08f40ea13e1a826e5f0412e9e0940c921ed1021464cdc2",
+        "size_in_bytes": 281225
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "065241ba03ef3ee8200084c075cbff50955a7e711765395ff34876dbc51a6bb9",
+  "size": 151351,
+  "subdir": "noarch",
+  "timestamp": 1749990170000,
+  "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.6.15-h4c7d964_0.conda",
+  "version": "2025.6.15"
+}
