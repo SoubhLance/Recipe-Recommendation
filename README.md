@@ -60,7 +60,7 @@ A sophisticated recipe recommendation engine that intelligently matches your ava
 - Python 3.7 or higher
 - pip (Python package manager)
 - 2GB+ RAM recommended
-- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Modern web browser (Chrome, Brave, Firefox, Safari, Edge)
 ```
 
 ### 🛠️ Installation
