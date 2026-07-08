@@ -45,7 +45,7 @@ These datasets are cleaned, standardized, and merged into a unified dataset befo
 # 🏗️ Dataset Pipeline
 
 <p align="center">
-  <img src="dataset pipeline.png" width="900" alt="Dataset Pipeline">
+  <img width="3152" height="807" alt="Untitled-2026-07-02-1424gg" src="https://github.com/user-attachments/assets/3b45f9a7-bdf9-4591-9eb5-65a5add3e15d" />
 </p>
 
 ---
@@ -53,46 +53,17 @@ These datasets are cleaned, standardized, and merged into a unified dataset befo
 # 🤖 Machine Learning Workflow
 
 <p align="center">
-  <img src="workflow of ml pipeline.png" width="900" alt="ML Workflow">
+<img width="2263" height="3747" alt="nnihjb" src="https://github.com/user-attachments/assets/ef0c951c-a1c1-4a11-a406-c064c7a9e9ed" />
 </p>
 
 ---
 
 # 🧠 System Architecture
+<p align="center">
+<img width="1975" height="5070" alt="feewnfekfe" src="https://github.com/user-attachments/assets/7a843f5f-7fbe-456f-9920-2c55829af26c" />
 
-```text
-Food.com
-RecipeNLG
-      │
-      ▼
-Data Cleaning & Integration
-      │
-      ▼
-NLP Preprocessing
-      │
-      ▼
-Feature Engineering
-      │
- ┌────┴──────────────────────────┐
- ▼                               ▼
-SBERT                     Structured Features
-Embeddings           (Ratings, Nutrition, Time)
- │                               │
- ▼                               ▼
-FAISS Index         Collaborative Filtering
- │                               │
- └──────────────┬────────────────┘
-                ▼
-      Hybrid Learning-to-Rank
-                ▼
-       Top-N Recommendations
-                ▼
-      Explainability Layer
-                ▼
-        FastAPI REST API
-                ▼
-          React Frontend
-```
+</p>
+
 
 ---
 
