@@ -1,4 +1,4 @@
- # 🍽️ Recipe Recommendation System
+# 🍽️ Recipe Recommendation System
 
 A **content-based recipe recommendation system** using semantic search (Sentence-BERT + FAISS), with an experimentally evaluated collaborative filtering and hybrid ranking layer. Built on Food.com and RecipeNLG datasets.
 
@@ -32,6 +32,85 @@ A **content-based recipe recommendation system** using semantic search (Sentence
 - **No nutrition data, no user interactions** — this asymmetry is tracked explicitly via a `nutrition_available` flag rather than imputed or dropped
 
 Both datasets are cleaned independently, then merged into a unified schema (`title`, `ingredients`, `instructions`, `description`, `source`, `nutrition_available`, nutrition columns) before any modeling.
+
+---
+
+## 🏗️ Dataset Pipeline
+
+```mermaid
+flowchart LR
+    A[Food.com<br/>RAW_recipes.csv] --> C[Data Cleaning]
+    B[RecipeNLG<br/>full_dataset.csv] --> C
+    C --> D[Unified Dataset<br/>title, ingredients, instructions,<br/>source, nutrition_available]
+    D --> E[NLP Preprocessing<br/>combined_text field]
+
+    style A fill:#2d5f2d,color:#fff
+    style B fill:#2d5f2d,color:#fff
+    style D fill:#1f3a5f,color:#fff
+    style E fill:#1f3a5f,color:#fff
+```
+
+**Note:** RecipeNLG has no nutrition or interaction data — this asymmetry is tracked via a `nutrition_available` flag rather than dropped or fabricated.
+
+---
+
+## 🤖 Machine Learning Workflow
+
+```mermaid
+flowchart TD
+    A[combined_text] --> B[SBERT Embeddings<br/>all-MiniLM-L6-v2, 384-dim]
+    C[Nutrition Columns<br/>Food.com only] --> D[StandardScaler]
+    B --> E[FAISS IndexFlatIP]
+    E --> F[Content-Based Recommender<br/>PRODUCTION]
+
+    G[RAW_interactions.csv] --> H{Interaction<br/>Density Check}
+    H -->|Sparse: median ~1-2/user| I[SVD<br/>scikit-surprise]
+    I --> J[Collaborative Filtering<br/>EXPERIMENTAL]
+
+    F --> K[Hybrid Ranker<br/>Logistic Regression]
+    J --> K
+    D --> K
+    K --> L[Hybrid Recommender<br/>EXPERIMENTAL]
+
+    F --> M[Leave-One-Out Evaluation<br/>Hit Rate at 10]
+    J --> M
+    L --> M
+    N[Popularity Baseline] --> M
+    M --> O[Result: Content-Based Wins<br/>0.005 vs 0.003 SVD vs 0.0035 Hybrid]
+
+    style F fill:#2d5f2d,color:#fff
+    style J fill:#5f3a1f,color:#fff
+    style L fill:#5f3a1f,color:#fff
+    style O fill:#1f3a5f,color:#fff
+```
+
+**LightFM was the original plan** for collaborative filtering (with SBERT embeddings as item features) — its build broke on Python 3.12/Windows and the upstream package is unmaintained. Pivoted to `scikit-surprise` SVD after a timeboxed attempt.
+
+---
+
+## 🧠 System Architecture (What's Actually Shipped)
+
+```mermaid
+flowchart TD
+    U[User Query<br/>title or free text] --> Q[Encode with SBERT]
+    Q --> S[FAISS Similarity Search]
+    S --> R[Top-N Content-Based<br/>Recommendations]
+    R --> NF{Nutrition Filter<br/>optional}
+    NF -->|Food.com rows only| RF[Filtered Results]
+    NF -->|skip| R
+    RF --> OUT[Response]
+    R --> OUT
+
+    OUT -.future.-> API[FastAPI Backend]
+    API -.future.-> FE[React Frontend]
+
+    style S fill:#2d5f2d,color:#fff
+    style R fill:#2d5f2d,color:#fff
+    style API fill:#444,color:#fff,stroke-dasharray: 5 5
+    style FE fill:#444,color:#fff,stroke-dasharray: 5 5
+```
+
+SVD and the hybrid ranker are **not** in this serving path — they're documented experiments (notebooks 05/06), evaluated in notebook 07, and available in `models/` if you want to revisit collaborative filtering later with denser interaction data.
 
 ---
 
