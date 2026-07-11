@@ -5,8 +5,10 @@ python-multipart
 pandas
 numpy
 scipy
+pyarrow
 
 scikit-learn
+scikit-surprise
 xgboost
 
 nltk
